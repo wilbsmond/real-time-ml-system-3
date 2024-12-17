@@ -53,4 +53,8 @@ if __name__ == '__main__':
 
     kraken_api = KrakenWebsocketAPI(pairs=config.pairs)
 
-    main(config.kafka_broker_address, config.kafka_topic, kraken_api=kraken_api)
+    main(
+        kafka_broker_address=config.kafka_broker_address,
+        kafka_topic=config.kafka_topic,
+        kraken_api=kraken_api,
+    )
