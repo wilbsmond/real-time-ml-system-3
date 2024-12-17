@@ -15,7 +15,7 @@ def custom_ts_extractor(
     Specifying a custom timestamp extractor to use the timestamp from the message payload
     instead of Kafka timestamp.
     """
-    breakpoint()
+    # breakpoint()
     return value['timestamp_ms']
 
 
@@ -74,6 +74,7 @@ def main(
         broker_address=kafka_broker_address,
         consumer_group=kafka_consumer_group,
     )
+    # app.clear_state()
 
     # Define the input and output topics
     input_topic = app.topic(
@@ -89,19 +90,29 @@ def main(
     # Create a Streaming DataFrame from the input topic
     sdf = app.dataframe(topic=input_topic)
 
-    # Define the tumbling window
-    sdf = sdf.tumbling_window(timedelta(seconds=candle_seconds))
+    # sdf = sdf.apply(lambda value: logger.info(f"Received trade: {value}"))
 
-    # Apply the reducer to update the candle, or initialize it with the first trade
-    sdf = sdf.reduce(reducer=update_candle, initializer=init_candle)
+    # # Define the tumbling window
+    # sdf = sdf.tumbling_window(timedelta(seconds=candle_seconds))
 
-    # Emit all intermediate candles to make the system more responsive
-    sdf = sdf.current(output_topic)
-    # If you wanted to emit the final candle only, you could do this:
-    # sdf = sdf.final()
+    # # Apply the reducer to update the candle, or initialize it with the first trade
+    # sdf = sdf.reduce(reducer=update_candle, initializer=init_candle)
+
+    # # Emit all intermediate candles to make the system more responsive
+    # sdf = sdf.current(output_topic)
+    # # If you wanted to emit the final candle only, you could do this:
+    # # sdf = sdf.final()
 
     # NOTE: you can pipe these operations together like in this example:
     # https://quix.io/docs/quix-streams/windowing.html#updating-window-definitions
+    sdf = (
+        # Define a tumbling window of 10 minutes
+        sdf.tumbling_window(timedelta(seconds=candle_seconds))
+        # Create a "reduce" aggregation with "reducer" and "initializer" functions
+        .reduce(reducer=update_candle, initializer=init_candle)
+        # Emit results only for closed windows
+        .current()
+    )
 
     # push the candle to the output topic
     sdf = sdf.to_topic(topic=output_topic)

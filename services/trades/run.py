@@ -38,7 +38,7 @@ def main(
             for trade in trades:
                 # Serialize the trade (i.e. event) as bytes using the defined Topic
                 message = topic.serialize(
-                    key=trade.pair,
+                    key=trade.pair.replace('/', '-'),
                     value=trade.to_dict(),
                 )
 
