@@ -210,4 +210,3 @@ certificates/
 *.parquet
 target/
 anthropic.env
-*.env
