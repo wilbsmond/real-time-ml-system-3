@@ -1,0 +1,13 @@
+[project]
+name = "technical-indicators"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "loguru>=0.7.3",
+    "numpy>=2.2.0",
+    "pydantic-settings>=2.7.0",
+    "quixstreams>=2.5.1",
+    "ta-lib>=0.5.1",
+]
