@@ -20,3 +20,6 @@ YES!
 
 ### Stefan Pajovic
 First partition ih handling 2 keys, so 4th partition is obsolete. So this means we can implement new partition obefore we introduce new keys, then new key is going to new partition? Do I get this right? :)
+
+### Jayant Sharma
+will the combination of pair and candle_seconds ensure a unique primary key everytime?
