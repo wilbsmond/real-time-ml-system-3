@@ -74,4 +74,5 @@ if __name__ == '__main__':
         kafka_output_topic=config.kafka_output_topic,
         kafka_consumer_group=config.kafka_consumer_group,
         max_candles_in_state=config.max_candles_in_state,
+        candle_seconds=config.candle_seconds,
     )
