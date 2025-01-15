@@ -8,7 +8,7 @@
     - [x] Dockerize it
 
 - [x] Docker compose file for our technical-indicators pipeline
-- [ ] Building the backfill pipeline
+- [ ] Start building the backfill pipeline.
 
 ## Questions
 
