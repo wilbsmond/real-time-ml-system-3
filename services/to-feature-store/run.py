@@ -11,7 +11,6 @@ def main(
     kafka_consumer_group: str,
     output_sink: HopsworksFeatureStoreSink,
     data_source: Literal['live', 'historical', 'test'],
-    s,
 ):
     """
     2 things:
