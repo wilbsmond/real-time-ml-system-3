@@ -1,4 +1,3 @@
-[ruff]
 line-length = 88
 lint.select = [
     "C",  # mccabe rules
