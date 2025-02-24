@@ -1,4 +1,4 @@
-[tool.ruff]
+[ruff]
 line-length = 88
 lint.select = [
     "C",  # mccabe rules
@@ -12,6 +12,6 @@ lint.ignore = [
     "C901",  # max-complexity-10
     "E501",  # line-too-long
 ]
-[tool.ruff.format]
+[format]
 indent-style = "space"
 quote-style = "single"
